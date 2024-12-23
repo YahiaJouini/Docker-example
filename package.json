@@ -1,0 +1,20 @@
+{
+   "name": "docker-example",
+   "module": "index.ts",
+   "type": "module",
+   "scripts": {
+      "dev": "bun --watch src/server.ts"
+   },
+   "devDependencies": {
+      "@types/bun": "latest"
+   },
+   "peerDependencies": {
+      "typescript": "^5.0.0"
+   },
+   "dependencies": {
+      "@types/express": "^5.0.0",
+      "@types/pg": "^8.11.10",
+      "express": "^4.21.2",
+      "pg": "^8.13.1"
+   }
+}
