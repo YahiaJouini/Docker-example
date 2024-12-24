@@ -3,6 +3,7 @@ services:
    web:
       container_name: web-container
       build: .
+      restart: always
       ports:
          - "3000:3000"
       environment:
@@ -20,6 +21,7 @@ services:
 
    db:
       image: postgres:16
+      restart: always
       container_name: postgres-container
       environment:
          POSTGRES_USER: root
@@ -27,10 +29,21 @@ services:
          POSTGRES_DB: quotes
       ports:
          # the host port is 5431 because the local port 5432 is already in use
+         # use this to run pgAdmin and conntect to the database server locally
          - "5431:5432"
-
       volumes:
          - postgres-data:/var/lib/postgresql/data
+
+   pgAdmin:
+      image: elestio/pgadmin
+      restart: always
+      container_name: db-management-container
+      environment:
+         PGADMIN_DEFAULT_EMAIL: admin@admin.com
+         PGADMIN_DEFAULT_PASSWORD: admin
+      ports:
+         # map the host port 8080 with the containers pgAdmin port
+         - "8080:80"
 
 volumes:
    postgres-data:
